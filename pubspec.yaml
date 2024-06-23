@@ -1,5 +1,5 @@
 name: favos
-description: "A new Flutter project."
+description: “This app is a specialized note-taking application that allows you to consolidate and manage all your favorite spots, including a wide range of shops and facilities, not just restaurants. When you discover a new place, you can save its details. Additionally, you can jot down your impressions and recommendations for any shop or facility you’ve visited. This app is your personal guide to exploring and remembering the places you love.”
 
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
