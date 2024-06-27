@@ -1,36 +1,29 @@
 import 'package:flutter/material.dart';
 
-class Header extends StatefulWidget implements PreferredSizeWidget {
-  const Header(
-      {super.key,
-      required this.title,
-      required this.isMenuButtonVisible,
-      required this.isSearchButtonVisible});
-  final String title;
-  final bool isMenuButtonVisible;
-  final bool isSearchButtonVisible;
+// mada: アイコンとメソッドもパラメータにする・データ構造にする・設定ファイルから読み取るようにする（footerも）
+class Header extends StatelessWidget implements PreferredSizeWidget {
+  const Header({
+    super.key,
+    required this.title,
+    this.leading,
+    this.actions,
+  });
 
-  @override
-  State<Header> createState() => _HeaderState();
+  final String title;
+  final Widget? leading;
+  final List<Widget>? actions;
 
   @override
   Size get preferredSize => Size.fromHeight(kToolbarHeight);
-}
-
-class _HeaderState extends State<Header> {
-  final menuButton = IconButton(icon: Icon(Icons.menu), onPressed: () {});
-  final searchButton = IconButton(icon: Icon(Icons.search), onPressed: () {});
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      leading: widget.isMenuButtonVisible ? menuButton : Container(),
-      title: Text(widget.title),
+      automaticallyImplyLeading: false, // leadingがnullの場合に戻るボタンを表示しないようにする
       centerTitle: true,
-      actions: [
-        widget.isSearchButtonVisible ? searchButton : Container(),
-      ],
-      elevation: 1,
+      title: Text(title),
+      leading: leading,
+      actions: actions,
       backgroundColor: Theme.of(context).colorScheme.inversePrimary,
     );
   }

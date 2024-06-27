@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 
-class Footer extends StatefulWidget {
-  @override
-  State<Footer> createState() => _FooterState();
-}
+class Footer extends StatelessWidget {
+  const Footer({
+    super.key,
+    required this.menuList,
+    required this.iconList,
+    required this.routeList,
+    required this.currentMenuIndex,
+  });
 
-class _FooterState extends State<Footer> {
-  final menuList = ['お店リスト', '共有', '設定'];
-  final iconList = [Icons.playlist_add_check, Icons.share, Icons.settings];
-  final routeList = ['/shop_list', '/share_menu', '/settings'];
-  int _currentIndex = 0;
+  final List<String> menuList;
+  final List<IconData> iconList;
+  final List<String> routeList;
+  final int currentMenuIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -22,9 +25,8 @@ class _FooterState extends State<Footer> {
       }),
       showSelectedLabels: true,
       showUnselectedLabels: true,
-      currentIndex: _currentIndex,
+      currentIndex: currentMenuIndex,
       onTap: (index) {
-        _currentIndex = index;
         Navigator.pushNamed(context, routeList[index]);
       },
       selectedItemColor: Theme.of(context).colorScheme.primary,

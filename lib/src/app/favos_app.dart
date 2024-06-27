@@ -2,6 +2,7 @@ import 'package:favos/src/content/initial_screen.dart';
 import 'package:favos/src/content/settings.dart';
 import 'package:favos/src/content/share_menu.dart';
 import 'package:favos/src/content/shop_list.dart';
+import 'package:favos/src/error/error_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -26,6 +27,7 @@ class FavosApp extends StatelessWidget {
         ),
         debugShowCheckedModeBanner: false,
         initialRoute: '/',
+
         // 以下のようにroutesを使うと、ページ遷移時のアニメーションが有効になる
         // routes: {
         //   '/': (context) => InitialScreen(firstContentPath: firstContentPath),
@@ -33,6 +35,7 @@ class FavosApp extends StatelessWidget {
         //   '/share_menu': (context) => ShareMenu(),
         //   '/settings': (context) => Settings(),
         // },
+
         // ページ遷移時のアニメーションを無効にする実装
         onGenerateRoute: (currentRouteSettings) {
           String? routeName = currentRouteSettings.name;
@@ -54,11 +57,11 @@ class FavosApp extends StatelessWidget {
               );
             } else {
               // 未定義のルートの場合の処理
-              return MaterialPageRoute(builder: (context) => Placeholder());
+              return MaterialPageRoute(builder: (context) => ErrorScreen());
             }
           } else {
             // routeNameがnullの場合の処理
-            return MaterialPageRoute(builder: (context) => Placeholder());
+            return MaterialPageRoute(builder: (context) => ErrorScreen());
           }
         },
       ),
