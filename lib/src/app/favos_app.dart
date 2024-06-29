@@ -36,7 +36,8 @@ class FavosApp extends StatelessWidget {
         //   '/settings': (context) => Settings(),
         // },
 
-        // ページ遷移時のアニメーションを無効にする実装
+        // ルーティング
+        // 以下のようにonGenerateRouteを使うと、ページ遷移時のアニメーションを無効になる
         onGenerateRoute: (currentRouteSettings) {
           String? routeName = currentRouteSettings.name;
           if (routeName != null) {

@@ -1,6 +1,6 @@
 import 'package:favos/src/app/favos_app.dart';
-import 'package:favos/src/footer/footer.dart';
-import 'package:favos/src/header/header.dart';
+import 'package:favos/src/common/footer.dart';
+import 'package:favos/src/common/header.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
