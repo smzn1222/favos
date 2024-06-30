@@ -41,7 +41,7 @@ class ShopList extends StatelessWidget {
         leading: menuButton,
         actions: actions,
       ),
-      drawer: SubMenuDrawer(subMenuList: subMenuList),
+      drawer: SubMenuDrawer(title: 'Favos', subMenuList: subMenuList),
       endDrawer: Drawer(),
       body: Center(
         child: Text(

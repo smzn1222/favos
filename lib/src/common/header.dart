@@ -21,7 +21,9 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       automaticallyImplyLeading: false, // leadingがnullの場合に戻るボタンを表示しないようにする
       centerTitle: true,
-      title: Text(title),
+      title: SizedBox(
+          // height: double.infinity,
+          child: FittedBox(fit: BoxFit.fitHeight, child: Text(title))),
       leading: leading,
       actions: actions,
       backgroundColor: Theme.of(context).colorScheme.inversePrimary,
