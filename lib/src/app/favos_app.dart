@@ -16,47 +16,55 @@ import 'package:favos/src/common_function/custom_transition_page.dart';
 
 class FavosApp extends StatelessWidget {
   FavosApp({super.key, required this.title}) {
-    _router = GoRouter(initialLocation: '/shop_list', routes: [
-      GoRoute(
-          path: '/shop_list',
-          pageBuilder: (context, state) => withoutAnimation(ShopList()),
-          routes: [
-            GoRoute(
-              path: 'add',
-              pageBuilder: (context, state) => sideSlideAnimation(ShopForm()),
-            ),
-            GoRoute(
-              path: 'areas',
-              pageBuilder: (context, state) => sideSlideAnimation(Areas()),
-            ),
-            GoRoute(
-                path: 'categories',
-                pageBuilder: (context, state) =>
-                    sideSlideAnimation(Categories())),
-            GoRoute(
-                path: 'situations',
-                pageBuilder: (context, state) =>
-                    sideSlideAnimation(Situations())),
-            GoRoute(
-                path: 'tags',
-                pageBuilder: (context, state) => sideSlideAnimation(Tags())),
-            GoRoute(
-                path: 'deleted_list',
-                pageBuilder: (context, state) =>
-                    upperSlideAnimation(DeletedList())),
-          ]),
-      GoRoute(
-        path: '/share_menu',
-        pageBuilder: (context, state) => withoutAnimation(ShareMenu()),
-      ),
-      GoRoute(
-        path: '/settings',
-        pageBuilder: (context, state) => withoutAnimation(Settings()),
-      ),
-      GoRoute(
-          path: '/error',
-          pageBuilder: (context, state) => withoutAnimation(ErrorScreen())),
-    ]);
+    _router = GoRouter(
+      initialLocation: '/shop_list',
+      routes: [
+        GoRoute(
+          path: '/',
+          redirect: (context, state) => '/shop_list',
+        ),
+        GoRoute(
+            path: '/shop_list',
+            pageBuilder: (context, state) => withoutAnimation(ShopList()),
+            routes: [
+              GoRoute(
+                path: 'add',
+                pageBuilder: (context, state) => sideSlideAnimation(ShopForm()),
+              ),
+              GoRoute(
+                path: 'areas',
+                pageBuilder: (context, state) => sideSlideAnimation(Areas()),
+              ),
+              GoRoute(
+                  path: 'categories',
+                  pageBuilder: (context, state) =>
+                      sideSlideAnimation(Categories())),
+              GoRoute(
+                  path: 'situations',
+                  pageBuilder: (context, state) =>
+                      sideSlideAnimation(Situations())),
+              GoRoute(
+                  path: 'tags',
+                  pageBuilder: (context, state) => sideSlideAnimation(Tags())),
+              GoRoute(
+                  path: 'deleted_list',
+                  pageBuilder: (context, state) =>
+                      upperSlideAnimation(DeletedList())),
+            ]),
+        GoRoute(
+          path: '/share_menu',
+          pageBuilder: (context, state) => withoutAnimation(ShareMenu()),
+        ),
+        GoRoute(
+          path: '/settings',
+          pageBuilder: (context, state) => withoutAnimation(Settings()),
+        ),
+        GoRoute(
+            path: '/error',
+            pageBuilder: (context, state) => withoutAnimation(ErrorScreen())),
+      ],
+      errorPageBuilder: (context, state) => withoutAnimation(ErrorScreen()),
+    );
   }
 
   final String title;
