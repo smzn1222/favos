@@ -19,6 +19,7 @@ class FavosApp extends StatelessWidget {
     _router = GoRouter(
       initialLocation: '/shop_list',
       routes: [
+        // ルートパスへのアクセス時のリダイレクト
         GoRoute(
           path: '/',
           redirect: (context, state) => '/shop_list',
@@ -63,6 +64,7 @@ class FavosApp extends StatelessWidget {
             path: '/error',
             pageBuilder: (context, state) => withoutAnimation(ErrorScreen())),
       ],
+      // 存在しないパスへのアクセス時のエラーページ
       errorPageBuilder: (context, state) => withoutAnimation(ErrorScreen()),
     );
   }
@@ -77,7 +79,6 @@ class FavosApp extends StatelessWidget {
       child: MaterialApp.router(
         title: title,
         theme: ThemeData(
-          useMaterial3: true,
           colorScheme: ColorScheme.fromSeed(
               seedColor: const Color.fromARGB(255, 34, 104, 255)),
         ),
