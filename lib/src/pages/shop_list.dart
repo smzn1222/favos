@@ -1,26 +1,38 @@
 import 'package:favos/src/app/favos_app.dart';
-import 'package:favos/src/common/footer.dart';
-import 'package:favos/src/common/header.dart';
-import 'package:favos/src/common/sub_menu_drawer.dart';
+import 'package:favos/src/common_widget/footer.dart';
+import 'package:favos/src/common_widget/header.dart';
+import 'package:favos/src/common_widget/sub_menu_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ShopList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var appState = Provider.of<FavosAppState>(context);
 
-    final menuList = ['お店リスト', '共有', '設定'];
+    final l10n = L10n.of(context);
+
+    final menuList = [l10n.shop_list, l10n.share, l10n.settings];
     final routeList = ['/shop_list', '/share_menu', '/settings'];
     final iconList = [Icons.playlist_add_check, Icons.share, Icons.settings];
     final subMenuList = [
-      'お店リスト',
-      'お店追加',
-      'エリア管理',
-      'カテゴリ管理',
-      'シチュエーション管理',
-      'タグ管理',
-      '削除した項目'
+      l10n.shop_list,
+      l10n.shop_list_add,
+      l10n.manage_areas,
+      l10n.manage_categories,
+      l10n.manage_situations,
+      l10n.manage_tags,
+      l10n.deleted_list,
+    ];
+    final subRouteList = [
+      '/shop_list',
+      '/add',
+      '/areas',
+      '/categories',
+      '/situations',
+      '/tags',
+      '/deleted_list',
     ];
 
     const thisMenuIndex = 0;
@@ -41,7 +53,11 @@ class ShopList extends StatelessWidget {
         leading: menuButton,
         actions: actions,
       ),
-      drawer: SubMenuDrawer(title: 'Favos', subMenuList: subMenuList),
+      drawer: SubMenuDrawer(
+          title: l10n.title,
+          currentPath: routeList[thisMenuIndex],
+          subMenuList: subMenuList,
+          subRouteList: subRouteList),
       endDrawer: Drawer(),
       body: Center(
         child: Text(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class Footer extends StatelessWidget {
   const Footer({
@@ -27,7 +28,7 @@ class Footer extends StatelessWidget {
       showUnselectedLabels: true,
       currentIndex: currentMenuIndex,
       onTap: (index) {
-        Navigator.pushNamed(context, routeList[index]);
+        GoRouter.of(context).go(routeList[index]);
       },
       selectedItemColor: Theme.of(context).colorScheme.primary,
       backgroundColor: Theme.of(context).colorScheme.inversePrimary,
