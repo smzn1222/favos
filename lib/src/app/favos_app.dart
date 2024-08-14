@@ -73,6 +73,10 @@ class FavosApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(
               seedColor: const Color.fromARGB(255, 34, 104, 255)),
         ),
+        darkTheme: ThemeData(
+          colorSchemeSeed: const Color.fromARGB(255, 34, 104, 255),
+          brightness: Brightness.dark,
+        ),
         debugShowCheckedModeBanner: false,
         // localize
         localizationsDelegates: L10n.localizationsDelegates,
