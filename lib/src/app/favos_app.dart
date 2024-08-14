@@ -1,9 +1,10 @@
-import 'package:favos/src/content/initial_screen.dart';
-import 'package:favos/src/content/settings.dart';
-import 'package:favos/src/content/share_menu.dart';
-import 'package:favos/src/content/shop_list.dart';
+import 'package:favos/src/pages/initial_screen.dart';
+import 'package:favos/src/pages/settings.dart';
+import 'package:favos/src/pages/share_menu.dart';
+import 'package:favos/src/pages/shop_list.dart';
 import 'package:favos/src/error/error_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
 class FavosApp extends StatelessWidget {
@@ -26,6 +27,10 @@ class FavosApp extends StatelessWidget {
               seedColor: const Color.fromARGB(255, 34, 104, 255)),
         ),
         debugShowCheckedModeBanner: false,
+        // localize
+        localizationsDelegates: L10n.localizationsDelegates,
+        supportedLocales: L10n.supportedLocales,
+
         initialRoute: '/',
 
         // 以下のようにroutesを使うと、ページ遷移時のアニメーションが有効になる
