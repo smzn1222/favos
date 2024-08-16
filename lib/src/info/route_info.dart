@@ -2,13 +2,16 @@ import 'package:favos/src/common/function/custom_transition_page.dart';
 import 'package:favos/src/error/error_screen.dart';
 import 'package:favos/src/screens/areas_screen.dart';
 import 'package:favos/src/screens/categories_screen.dart';
+import 'package:favos/src/screens/delete_all_screen.dart';
 import 'package:favos/src/screens/deleted_list_screen.dart';
+import 'package:favos/src/screens/search_condition_setting_screen.dart';
 import 'package:favos/src/screens/settings_screen.dart';
 import 'package:favos/src/screens/share_menu_screen.dart';
 import 'package:favos/src/screens/shop_form_screen.dart';
 import 'package:favos/src/screens/shop_list_screen.dart';
 import 'package:favos/src/screens/situations_screen.dart';
 import 'package:favos/src/screens/tags_screen.dart';
+import 'package:favos/src/screens/theme_setting_screen.dart';
 import 'package:flutter/material.dart';
 
 class RouteItem {
@@ -93,7 +96,26 @@ final class RouteInfo {
         path: '/settings',
         screen: SettingsScreen(),
         customPageBuilder: (page) => withoutAnimation(page),
-        childRoutes: null,
+        childRoutes: [
+          RouteItem(
+            path: 'search_condition',
+            screen: SearchConditionSettingScreen(),
+            customPageBuilder: (page) => upperSlideAnimation(page),
+            childRoutes: null,
+          ),
+          RouteItem(
+            path: 'theme',
+            screen: ThemeSettingScreen(),
+            customPageBuilder: (page) => upperSlideAnimation(page),
+            childRoutes: null,
+          ),
+          RouteItem(
+            path: 'delete_all',
+            screen: DeleteAllScreen(),
+            customPageBuilder: (page) => upperSlideAnimation(page),
+            childRoutes: null,
+          ),
+        ],
       ),
     ];
     errorPage = ErrorScreen();

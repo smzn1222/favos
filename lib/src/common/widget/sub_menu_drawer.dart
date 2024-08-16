@@ -18,7 +18,7 @@ class SubMenuDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       child: ListView(
-        children: <Widget>[
+        children: [
           SizedBox(
             height: 68.0,
             child: DrawerHeader(
@@ -40,17 +40,17 @@ class SubMenuDrawer extends StatelessWidget {
                   ]),
             ),
           ),
-          for (var i = 0; i < subMenuInfo.menuItems.length; i++)
+          for (var menuItem in subMenuInfo.menuItems)
             ListTile(
-              title: Text(subMenuInfo.menuItems[i].label),
+              title: Text(menuItem.label),
               onTap: () {
-                if (parentMenuLabel == subMenuInfo.menuItems[i].label) {
+                if (parentMenuLabel == menuItem.label) {
                   GoRouter.of(context).pop();
                   return;
                 }
-                GoRouter.of(context).go(subMenuInfo.menuItems[i].route);
+                GoRouter.of(context).go(menuItem.route);
               },
-              selected: parentMenuLabel == subMenuInfo.menuItems[i].label,
+              selected: parentMenuLabel == menuItem.label,
               selectedColor: Theme.of(context).colorScheme.inversePrimary,
             ),
         ],
