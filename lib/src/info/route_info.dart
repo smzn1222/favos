@@ -7,6 +7,8 @@ import 'package:favos/src/screens/deleted_list_screen.dart';
 import 'package:favos/src/screens/search_condition_setting_screen.dart';
 import 'package:favos/src/screens/settings_screen.dart';
 import 'package:favos/src/screens/share_menu_screen.dart';
+import 'package:favos/src/screens/shared_qr_screen.dart';
+import 'package:favos/src/screens/sharing_screen.dart';
 import 'package:favos/src/screens/shop_form_screen.dart';
 import 'package:favos/src/screens/shop_list_screen.dart';
 import 'package:favos/src/screens/situations_screen.dart';
@@ -90,7 +92,20 @@ final class RouteInfo {
         path: '/share_menu',
         screen: ShareMenuScreen(),
         customPageBuilder: (page) => withoutAnimation(page),
-        childRoutes: null,
+        childRoutes: [
+          RouteItem(
+            path: 'sharing',
+            screen: SharingScreen(),
+            customPageBuilder: (page) => upperSlideAnimation(page),
+            childRoutes: null,
+          ),
+          RouteItem(
+            path: 'shared_qr',
+            screen: SharedQrScreen(),
+            customPageBuilder: (page) => upperSlideAnimation(page),
+            childRoutes: null,
+          ),
+        ],
       ),
       RouteItem(
         path: '/settings',

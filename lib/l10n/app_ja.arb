@@ -25,6 +25,8 @@
   "manage_tags_delete": "タグ削除",
   "deleted_list": "削除したお店",
   "share": "共有",
+  "sharing": "共有する",
+  "shared_qr": "共有してもらう (QRコード)",
   "settings": "設定",
   "theme_setting": "テーマ設定",
   "search_condition_setting": "検索設定",
