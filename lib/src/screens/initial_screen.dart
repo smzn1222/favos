@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class InitialScreen extends StatelessWidget {
   const InitialScreen({super.key, required this.firstContentPath});
@@ -7,7 +8,7 @@ class InitialScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Future.delayed(Duration(seconds: 2), () {
-      Navigator.pushNamed(context, firstContentPath);
+      GoRouter.of(context).go(firstContentPath);
     });
 
     return Center(

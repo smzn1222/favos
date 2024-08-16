@@ -1,0 +1,29 @@
+import 'package:favos/src/common/widget/header.dart';
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+class DeletedListScreen extends StatelessWidget {
+  const DeletedListScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = L10n.of(context);
+    final String thisMenuLabel = l10n.deleted_list;
+
+    return Scaffold(
+      appBar: Header(
+        title: thisMenuLabel,
+        actions: [
+          TextButton(
+            child: Text(l10n.done),
+            onPressed: () => GoRouter.of(context).pop(),
+          ),
+        ],
+      ),
+      body: Center(
+        child: Placeholder(),
+      ),
+    );
+  }
+}

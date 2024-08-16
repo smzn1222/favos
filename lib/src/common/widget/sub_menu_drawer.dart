@@ -1,20 +1,24 @@
+import 'package:favos/src/common/interface/sub_menu_info.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class SubMenuDrawer extends StatelessWidget {
   const SubMenuDrawer({
     super.key,
     required this.title,
-    required this.subMenuList,
+    required this.parentMenuLabel,
+    required this.subMenuInfo,
   });
 
   final String title;
-  final List<String> subMenuList;
+  final String parentMenuLabel;
+  final SubMenuInfo subMenuInfo;
 
   @override
   Widget build(BuildContext context) {
     return Drawer(
       child: ListView(
-        children: <Widget>[
+        children: [
           SizedBox(
             height: 68.0,
             child: DrawerHeader(
@@ -32,17 +36,22 @@ class SubMenuDrawer extends StatelessWidget {
                         )),
                     IconButton(
                         icon: Icon(Icons.close),
-                        onPressed: () => Navigator.pop(context)),
+                        onPressed: () => GoRouter.of(context).pop()),
                   ]),
             ),
           ),
-          for (var subMenu in subMenuList)
+          for (var menuItem in subMenuInfo.menuItems)
             ListTile(
-              title: Text(subMenu),
+              title: Text(menuItem.label),
               onTap: () {
-                // Do something
-                Navigator.pop(context);
+                if (parentMenuLabel == menuItem.label) {
+                  GoRouter.of(context).pop();
+                  return;
+                }
+                GoRouter.of(context).go(menuItem.route);
               },
+              selected: parentMenuLabel == menuItem.label,
+              selectedColor: Theme.of(context).colorScheme.inversePrimary,
             ),
         ],
       ),
