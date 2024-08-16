@@ -1,12 +1,14 @@
 import 'package:favos/src/app/favos_app.dart';
-import 'package:favos/src/common_widget/footer.dart';
-import 'package:favos/src/common_widget/header.dart';
-import 'package:favos/src/common_widget/sub_menu_drawer.dart';
+import 'package:favos/src/common/widget/footer.dart';
+import 'package:favos/src/common/widget/header.dart';
+import 'package:favos/src/common/widget/sub_menu_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class ShopList extends StatelessWidget {
+class ShopListScreen extends StatelessWidget {
+  const ShopListScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     var appState = Provider.of<FavosAppState>(context);

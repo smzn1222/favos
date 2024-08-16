@@ -1,8 +1,10 @@
-import 'package:favos/src/common_widget/header.dart';
+import 'package:favos/src/common/widget/header.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class Areas extends StatelessWidget {
+class AreasScreen extends StatelessWidget {
+  const AreasScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
