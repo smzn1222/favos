@@ -1,6 +1,7 @@
 import 'package:favos/src/app/favos_app.dart';
 import 'package:favos/src/common/widget/footer.dart';
 import 'package:favos/src/common/widget/header.dart';
+import 'package:favos/src/info/main_menu_info.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -13,25 +14,20 @@ class ShareMenuScreen extends StatelessWidget {
     var appState = Provider.of<FavosAppState>(context);
 
     final l10n = L10n.of(context);
-
-    final menuList = [l10n.shop_list, l10n.share, l10n.settings];
-    final iconList = [Icons.playlist_add_check, Icons.share, Icons.settings];
-    final routeList = ['/shop_list', '/share_menu', '/settings'];
-    const thisMenuIndex = 1;
+    final String thisMenuLabel = l10n.share;
+    final favosMenuInfo = FavosMenuInfo(context);
 
     return Scaffold(
       appBar: Header(
-        title: menuList[thisMenuIndex],
+        title: thisMenuLabel,
       ),
       body: Center(
         child: Text(
             'Share Menu. Index of current location : ${appState.currentLocationIndex}'),
       ),
       bottomNavigationBar: Footer(
-        menuList: menuList,
-        iconList: iconList,
-        routeList: routeList,
-        currentMenuIndex: thisMenuIndex,
+        mainMenuInfo: favosMenuInfo,
+        currentMenuLabel: thisMenuLabel,
       ),
     );
   }

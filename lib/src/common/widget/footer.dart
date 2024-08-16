@@ -1,37 +1,63 @@
+import 'package:favos/src/info/main_menu_info.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class Footer extends StatelessWidget {
-  const Footer({
+  Footer({
     super.key,
-    required this.menuList,
-    required this.iconList,
-    required this.routeList,
-    required this.currentMenuIndex,
+    required this.currentMenuLabel,
+    required this.mainMenuInfo,
   });
 
-  final List<String> menuList;
-  final List<IconData> iconList;
-  final List<String> routeList;
-  final int currentMenuIndex;
+  late final MainMenuInfo mainMenuInfo;
+
+  final String currentMenuLabel;
 
   @override
   Widget build(BuildContext context) {
+    final int currentMenuIndex = mainMenuInfo.menuItems
+        .indexWhere((element) => element.label == currentMenuLabel);
+
     return BottomNavigationBar(
-      items: List.generate(menuList.length, (index) {
+      items: List.generate(mainMenuInfo.menuItems.length, (index) {
         return BottomNavigationBarItem(
-          icon: Icon(iconList[index]),
-          label: menuList[index],
+          icon: Icon(mainMenuInfo.menuItems[index].icon),
+          label: mainMenuInfo.menuItems[index].label,
         );
       }),
       showSelectedLabels: true,
       showUnselectedLabels: true,
       currentIndex: currentMenuIndex,
       onTap: (index) {
-        GoRouter.of(context).go(routeList[index]);
+        GoRouter.of(context).go(mainMenuInfo.menuItems[index].route);
       },
-      selectedItemColor: Theme.of(context).colorScheme.primary,
+      selectedItemColor: Theme.of(context).colorScheme.onBackground,
       backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+      // currentIndex: 1,
+      // // アイコンサイズ
+      // iconSize: 35,
+      // // アイコンの色設定をここで行う（統一する）
+      // selectedIconTheme:
+      //     const IconThemeData(color: ・・・),
+      // unselectedIconTheme:
+      //     const IconThemeData(color: ・・・),
+      // // ラベルの色設定をここで行う（統一する）
+      // selectedItemColor: ・・・,
+      // unselectedItemColor: ・・・,
+      // // ラベルのTextstyle設定（fontSizeを統一させる）
+      // selectedLabelStyle: TextStyle(fontSize: ・・・),
+      // unselectedLabelStyle: TextStyle(fontSize: ・・・),
+      // // 背景色
+      // backgroundColor: CommonColors.primaryColor,
+      // items: const [
+      // 　　　　BottomNavigationBarItem(label: "レシピ追加", icon: Icon(Icons.add)),
+      //   BottomNavigationBarItem(label: "ホーム画面更新", icon: Icon(Icons.home)),
+      //   BottomNavigationBarItem(label: "設定", icon: Icon(Icons.settings)),
+      // ],
+      // // タップされたボタンに応じて，画面遷移する．
+      // onTap: (index) {
+      //         ・・・・・
+      // },
     );
   }
 }

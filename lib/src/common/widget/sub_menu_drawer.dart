@@ -1,3 +1,4 @@
+import 'package:favos/src/info/sub_menu_info.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -5,15 +6,13 @@ class SubMenuDrawer extends StatelessWidget {
   const SubMenuDrawer({
     super.key,
     required this.title,
-    required this.currentPath,
-    required this.subMenuList,
-    required this.subRouteList,
+    required this.parentMenuLabel,
+    required this.subMenuInfo,
   });
 
   final String title;
-  final String currentPath;
-  final List<String> subMenuList;
-  final List<String> subRouteList;
+  final String parentMenuLabel;
+  final SubMenuInfo subMenuInfo;
 
   @override
   Widget build(BuildContext context) {
@@ -41,15 +40,15 @@ class SubMenuDrawer extends StatelessWidget {
                   ]),
             ),
           ),
-          for (var i = 0; i < subMenuList.length; i++)
+          for (var i = 0; i < subMenuInfo.menuItems.length; i++)
             ListTile(
-              title: Text(subMenuList[i]),
+              title: Text(subMenuInfo.menuItems[i].label),
               onTap: () {
-                if (currentPath == subRouteList[i]) {
+                if (parentMenuLabel == subMenuInfo.menuItems[i].label) {
                   GoRouter.of(context).pop();
                   return;
                 }
-                GoRouter.of(context).go('$currentPath${subRouteList[i]}');
+                GoRouter.of(context).go(subMenuInfo.menuItems[i].route);
               },
             ),
         ],

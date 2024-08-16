@@ -1,6 +1,7 @@
 {
   "@@locale": "ja",
   "title": "Favos",
+  "sub_title": "メニュー",
   "shop_list": "お店リスト",
   "shop_list_add": "お店追加",
   "shop_list_edit": "お店編集",
