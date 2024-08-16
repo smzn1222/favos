@@ -1,23 +1,6 @@
+import 'package:favos/src/common/interface/main_menu_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
-class MainMenuItem {
-  final String title;
-  final String label;
-  final String route;
-  final IconData icon;
-
-  MainMenuItem({
-    required this.title,
-    required this.label,
-    required this.route,
-    required this.icon,
-  });
-}
-
-abstract interface class MainMenuInfo {
-  late final List<MainMenuItem> menuItems;
-}
 
 final class FavosMenuInfo implements MainMenuInfo {
   @override

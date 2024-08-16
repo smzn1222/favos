@@ -1,4 +1,4 @@
-import 'package:favos/src/info/sub_menu_info.dart';
+import 'package:favos/src/common/interface/sub_menu_info.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 

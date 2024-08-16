@@ -1,21 +1,6 @@
+import 'package:favos/src/common/interface/sub_menu_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
-class SubMenuItem {
-  final String title;
-  final String label;
-  final String route;
-
-  SubMenuItem({
-    required this.title,
-    required this.label,
-    required this.route,
-  });
-}
-
-abstract interface class SubMenuInfo {
-  late final List<SubMenuItem> menuItems;
-}
 
 final class ShopListSubMenuInfo implements SubMenuInfo {
   @override

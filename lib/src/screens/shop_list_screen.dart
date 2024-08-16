@@ -1,14 +1,15 @@
 import 'package:favos/src/common/widget/footer.dart';
 import 'package:favos/src/common/widget/header.dart';
 import 'package:favos/src/common/widget/sub_menu_drawer.dart';
-import 'package:favos/src/info/main_menu_info.dart';
-import 'package:favos/src/info/sub_menu_info.dart';
+import 'package:favos/src/info/favos_menu_info.dart';
+import 'package:favos/src/info/shop_list_sub_menu_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:go_router/go_router.dart';
 
 class ShopListScreen extends StatelessWidget {
   ShopListScreen({super.key});
-  late final MainMenuInfo mainMenuInfo;
+  late final FavosMenuInfo favosMenuInfo;
   late final ShopListSubMenuInfo shopListSubMenuInfo;
 
   @override
@@ -47,6 +48,10 @@ class ShopListScreen extends StatelessWidget {
       ),
       body: Center(
         child: Placeholder(),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => GoRouter.of(context).go('/shop_list/add'),
+        child: const Icon(Icons.add),
       ),
       bottomNavigationBar: Footer(
         currentMenuLabel: thisMenuLabel,

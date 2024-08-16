@@ -1,6 +1,6 @@
 import 'package:favos/src/common/widget/header.dart';
 import 'package:favos/src/common/widget/sub_menu_drawer.dart';
-import 'package:favos/src/info/sub_menu_info.dart';
+import 'package:favos/src/info/shop_list_sub_menu_info.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
