@@ -1,11 +1,9 @@
-import 'package:favos/src/app/favos_app.dart';
 import 'package:favos/src/common/widget/footer.dart';
 import 'package:favos/src/common/widget/header.dart';
 import 'package:favos/src/common/widget/sub_menu_drawer.dart';
 import 'package:favos/src/info/main_menu_info.dart';
 import 'package:favos/src/info/sub_menu_info.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class ShopListScreen extends StatelessWidget {
@@ -15,8 +13,6 @@ class ShopListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var appState = Provider.of<FavosAppState>(context);
-
     final l10n = L10n.of(context);
     final String thisMenuLabel = l10n.shop_list;
     final favosMenuInfo = FavosMenuInfo(context);
@@ -44,10 +40,13 @@ class ShopListScreen extends StatelessWidget {
         parentMenuLabel: thisMenuLabel,
         subMenuInfo: shopListSubMenuInfo,
       ),
-      endDrawer: Drawer(),
+      endDrawer: SubMenuDrawer(
+        title: l10n.sub_title,
+        parentMenuLabel: thisMenuLabel,
+        subMenuInfo: shopListSubMenuInfo,
+      ),
       body: Center(
-        child: Text(
-            'Shop List. Index of current location : ${appState.currentLocationIndex}'),
+        child: Placeholder(),
       ),
       bottomNavigationBar: Footer(
         currentMenuLabel: thisMenuLabel,

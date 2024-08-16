@@ -50,6 +50,8 @@ class SubMenuDrawer extends StatelessWidget {
                 }
                 GoRouter.of(context).go(subMenuInfo.menuItems[i].route);
               },
+              selected: parentMenuLabel == subMenuInfo.menuItems[i].label,
+              selectedColor: Theme.of(context).colorScheme.inversePrimary,
             ),
         ],
       ),

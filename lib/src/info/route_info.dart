@@ -48,31 +48,31 @@ final class RouteInfo {
           RouteItem(
             path: 'add',
             screen: ShopFormScreen(),
-            customPageBuilder: (page) => sideSlideAnimation(page),
+            customPageBuilder: (page) => upperSlideAnimation(page),
             childRoutes: null,
           ),
           RouteItem(
             path: 'areas',
             screen: AreasScreen(),
-            customPageBuilder: (page) => sideSlideAnimation(page),
+            customPageBuilder: (page) => upperSlideAnimation(page),
             childRoutes: null,
           ),
           RouteItem(
             path: 'categories',
             screen: CategoriesScreen(),
-            customPageBuilder: (page) => sideSlideAnimation(page),
+            customPageBuilder: (page) => upperSlideAnimation(page),
             childRoutes: null,
           ),
           RouteItem(
             path: 'situations',
             screen: SituationsScreen(),
-            customPageBuilder: (page) => sideSlideAnimation(page),
+            customPageBuilder: (page) => upperSlideAnimation(page),
             childRoutes: null,
           ),
           RouteItem(
             path: 'tags',
             screen: TagsScreen(),
-            customPageBuilder: (page) => sideSlideAnimation(page),
+            customPageBuilder: (page) => upperSlideAnimation(page),
             childRoutes: null,
           ),
           RouteItem(
