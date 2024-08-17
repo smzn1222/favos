@@ -31,5 +31,6 @@
   "theme_setting": "テーマ設定",
   "search_condition_setting": "検索設定",
   "delete_all_setting": "データ削除",
-  "done": "完了"
+  "done": "完了",
+  "shop_condition_drawer_title": "検索条件"
 }

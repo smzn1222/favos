@@ -4,6 +4,7 @@ import 'package:favos/src/common/widget/header.dart';
 import 'package:favos/src/common/widget/sub_menu_drawer.dart';
 import 'package:favos/src/info/favos_menu_info.dart';
 import 'package:favos/src/info/shop_list_sub_menu_info.dart';
+import 'package:favos/src/parts/search_condition_drawer.dart';
 import 'package:favos/src/parts/shop_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -45,11 +46,7 @@ class ShopListScreen extends StatelessWidget {
         parentMenuLabel: thisMenuLabel,
         subMenuInfo: shopListSubMenuInfo,
       ),
-      endDrawer: SubMenuDrawer(
-        title: l10n.sub_title,
-        parentMenuLabel: thisMenuLabel,
-        subMenuInfo: shopListSubMenuInfo,
-      ),
+      endDrawer: SearchConditionDrawer(),
       body: ListView(
         children: [
           for (var shop in shopList)
