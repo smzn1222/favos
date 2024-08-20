@@ -1,4 +1,4 @@
-import 'package:favos/src/common/function/custom_transition_page.dart';
+import 'package:favos/src/common/function/my_custom_transition_page.dart';
 import 'package:favos/src/error/error_screen.dart';
 import 'package:favos/src/screens/areas_screen.dart';
 import 'package:favos/src/screens/categories_screen.dart';
@@ -53,19 +53,19 @@ final class RouteInfo {
           RouteItem(
             path: 'add',
             screen: ShopFormScreen(),
-            customPageBuilder: (page) => upperSlideAnimation(page),
+            customPageBuilder: (page) => cupertinoPageAnimation(page),
             childRoutes: null,
           ),
           RouteItem(
             path: 'areas',
             screen: AreasScreen(),
-            customPageBuilder: (page) => upperSlideAnimation(page),
+            customPageBuilder: null,
             childRoutes: null,
           ),
           RouteItem(
             path: 'categories',
             screen: CategoriesScreen(),
-            customPageBuilder: (page) => upperSlideAnimation(page),
+            customPageBuilder: (page) => cupertinoUpperPageAnimation(page),
             childRoutes: null,
           ),
           RouteItem(

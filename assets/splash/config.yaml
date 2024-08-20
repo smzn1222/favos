@@ -1,0 +1,9 @@
+flutter_native_splash:
+  color: "#ffffff" # Background color
+  image: assets/splash/splash.png # Image to be displayed
+
+  android_12:
+    color: "#ffffff" # Background color
+
+  android_gravity: center # Android の画像の表示位置
+  ios_content_mode: center # iOS の画像の表示位置

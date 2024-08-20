@@ -19,6 +19,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   go_router: ^14.2.3
+  flutter_native_splash: ^2.4.0
 
 dev_dependencies:
   flutter_test:
