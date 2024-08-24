@@ -33,7 +33,7 @@ class RouteItem {
 final class RouteInfo {
   late final String initialLocation;
   late final List<RouteItem> routes;
-  late final Widget errorPage;
+  late final Widget errorScreen;
   late final Function? errorPageBuilder;
 
   static final RouteInfo _instance = RouteInfo._internal();
@@ -48,42 +48,42 @@ final class RouteInfo {
       RouteItem(
         path: '/shop_list',
         screen: ShopListScreen(),
-        customPageBuilder: (page) => withoutAnimation(page),
+        customPageBuilder: (screen) => withoutAnimation(screen),
         childRoutes: [
           RouteItem(
             path: 'add',
             screen: ShopFormScreen(),
-            customPageBuilder: (page) => cupertinoPageAnimation(page),
+            customPageBuilder: (screen) => cupertinoPageAnimation(screen),
             childRoutes: null,
           ),
           RouteItem(
             path: 'areas',
             screen: AreasScreen(),
-            customPageBuilder: null,
+            customPageBuilder: (screen) => fullScreenDialogAnimation(screen),
             childRoutes: null,
           ),
           RouteItem(
             path: 'categories',
             screen: CategoriesScreen(),
-            customPageBuilder: (page) => cupertinoUpperPageAnimation(page),
+            customPageBuilder: (screen) => cupertinoModalPageAnimation(screen),
             childRoutes: null,
           ),
           RouteItem(
             path: 'situations',
             screen: SituationsScreen(),
-            customPageBuilder: (page) => upperSlideAnimation(page),
+            customPageBuilder: (screen) => upperSlideAnimation(screen),
             childRoutes: null,
           ),
           RouteItem(
             path: 'tags',
             screen: TagsScreen(),
-            customPageBuilder: (page) => upperSlideAnimation(page),
+            customPageBuilder: (screen) => upperSlideAnimation(screen),
             childRoutes: null,
           ),
           RouteItem(
             path: 'deleted_list',
             screen: DeletedListScreen(),
-            customPageBuilder: (page) => upperSlideAnimation(page),
+            customPageBuilder: (screen) => upperSlideAnimation(screen),
             childRoutes: null,
           ),
         ],
@@ -91,18 +91,18 @@ final class RouteInfo {
       RouteItem(
         path: '/share_menu',
         screen: ShareMenuScreen(),
-        customPageBuilder: (page) => withoutAnimation(page),
+        customPageBuilder: (screen) => withoutAnimation(screen),
         childRoutes: [
           RouteItem(
             path: 'sharing',
             screen: SharingScreen(),
-            customPageBuilder: (page) => upperSlideAnimation(page),
+            customPageBuilder: (screen) => upperSlideAnimation(screen),
             childRoutes: null,
           ),
           RouteItem(
             path: 'shared_qr',
             screen: SharedQrScreen(),
-            customPageBuilder: (page) => upperSlideAnimation(page),
+            customPageBuilder: (screen) => upperSlideAnimation(screen),
             childRoutes: null,
           ),
         ],
@@ -110,30 +110,30 @@ final class RouteInfo {
       RouteItem(
         path: '/settings',
         screen: SettingsScreen(),
-        customPageBuilder: (page) => withoutAnimation(page),
+        customPageBuilder: (screen) => withoutAnimation(screen),
         childRoutes: [
           RouteItem(
             path: 'search_condition',
             screen: SearchConditionSettingScreen(),
-            customPageBuilder: (page) => upperSlideAnimation(page),
+            customPageBuilder: (screen) => upperSlideAnimation(screen),
             childRoutes: null,
           ),
           RouteItem(
             path: 'theme',
             screen: ThemeSettingScreen(),
-            customPageBuilder: (page) => upperSlideAnimation(page),
+            customPageBuilder: (screen) => upperSlideAnimation(screen),
             childRoutes: null,
           ),
           RouteItem(
             path: 'delete_all',
             screen: DeleteAllScreen(),
-            customPageBuilder: (page) => upperSlideAnimation(page),
+            customPageBuilder: (screen) => upperSlideAnimation(screen),
             childRoutes: null,
           ),
         ],
       ),
     ];
-    errorPage = ErrorScreen();
-    errorPageBuilder = (page) => withoutAnimation(page);
+    errorScreen = ErrorScreen();
+    errorPageBuilder = (screen) => withoutAnimation(screen);
   }
 }

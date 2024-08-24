@@ -1,9 +1,12 @@
 import 'package:favos/src/info/route_info.dart';
 import 'package:go_router/go_router.dart';
 
+// Infoクラスで定義したルート設定を読み込み、GoRouterに変換する
 GoRouter routeBuilder() {
   RouteInfo routeInfo = RouteInfo();
   List<GoRoute> routes = convertToGoRouter(routeInfo.routes);
+
+  // 根本のルートは初期ページにリダイレクトする
   routes.add(GoRoute(
     path: '/',
     redirect: (context, state) => routeInfo.initialLocation,
@@ -13,10 +16,10 @@ GoRouter routeBuilder() {
     initialLocation: routeInfo.initialLocation,
     routes: routes,
     errorPageBuilder: routeInfo.errorPageBuilder != null
-        ? (context, state) => routeInfo.errorPageBuilder!(routeInfo.errorPage)
+        ? (context, state) => routeInfo.errorPageBuilder!(routeInfo.errorScreen)
         : null,
     errorBuilder: routeInfo.errorPageBuilder == null
-        ? (context, state) => routeInfo.errorPage
+        ? (context, state) => routeInfo.errorScreen
         : null,
   );
 }
