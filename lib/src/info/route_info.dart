@@ -1,4 +1,4 @@
-import 'package:favos/src/common/function/my_custom_transition_page.dart';
+import 'package:favos/src/common/function/page_builder_functions.dart';
 import 'package:favos/src/error/error_screen.dart';
 import 'package:favos/src/screens/areas_screen.dart';
 import 'package:favos/src/screens/categories_screen.dart';
@@ -15,6 +15,7 @@ import 'package:favos/src/screens/situations_screen.dart';
 import 'package:favos/src/screens/tags_screen.dart';
 import 'package:favos/src/screens/theme_setting_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 class RouteItem {
   final String path;
@@ -48,42 +49,48 @@ final class RouteInfo {
       RouteItem(
         path: '/shop_list',
         screen: ShopListScreen(),
-        customPageBuilder: (screen) => withoutAnimation(screen),
+        customPageBuilder: (_, __, screen) => withoutAnimation(screen),
         childRoutes: [
           RouteItem(
             path: 'add',
             screen: ShopFormScreen(),
-            customPageBuilder: (screen) => cupertinoPageAnimation(screen),
+            customPageBuilder: (_, __, screen) =>
+                cupertinoRightSlideAnimation(screen),
             childRoutes: null,
           ),
           RouteItem(
             path: 'areas',
             screen: AreasScreen(),
-            customPageBuilder: (screen) => fullScreenDialogAnimation(screen),
+            customPageBuilder: (_, __, screen) =>
+                fullScreenDialogAnimation(screen),
             childRoutes: null,
           ),
           RouteItem(
             path: 'categories',
             screen: CategoriesScreen(),
-            customPageBuilder: (screen) => cupertinoModalPageAnimation(screen),
+            customPageBuilder: (_, __, screen) =>
+                fullScreenDialogAnimation(screen),
             childRoutes: null,
           ),
           RouteItem(
             path: 'situations',
             screen: SituationsScreen(),
-            customPageBuilder: (screen) => upperSlideAnimation(screen),
+            customPageBuilder: (_, __, screen) =>
+                materialModalBottomSheetAnimation(screen),
             childRoutes: null,
           ),
           RouteItem(
             path: 'tags',
             screen: TagsScreen(),
-            customPageBuilder: (screen) => upperSlideAnimation(screen),
+            customPageBuilder: (_, __, screen) =>
+                barModalBottomSheetAnimation(screen),
             childRoutes: null,
           ),
           RouteItem(
             path: 'deleted_list',
             screen: DeletedListScreen(),
-            customPageBuilder: (screen) => upperSlideAnimation(screen),
+            customPageBuilder: (_, __, screen) =>
+                cupertinoModalBottomSheetAnimation(screen),
             childRoutes: null,
           ),
         ],
@@ -91,18 +98,18 @@ final class RouteInfo {
       RouteItem(
         path: '/share_menu',
         screen: ShareMenuScreen(),
-        customPageBuilder: (screen) => withoutAnimation(screen),
+        customPageBuilder: (_, __, screen) => withoutAnimation(screen),
         childRoutes: [
           RouteItem(
             path: 'sharing',
             screen: SharingScreen(),
-            customPageBuilder: (screen) => upperSlideAnimation(screen),
+            customPageBuilder: (_, __, screen) => upperSlideAnimation(screen),
             childRoutes: null,
           ),
           RouteItem(
             path: 'shared_qr',
             screen: SharedQrScreen(),
-            customPageBuilder: (screen) => upperSlideAnimation(screen),
+            customPageBuilder: (_, __, screen) => upperSlideAnimation(screen),
             childRoutes: null,
           ),
         ],
@@ -110,30 +117,30 @@ final class RouteInfo {
       RouteItem(
         path: '/settings',
         screen: SettingsScreen(),
-        customPageBuilder: (screen) => withoutAnimation(screen),
+        customPageBuilder: (_, __, screen) => withoutAnimation(screen),
         childRoutes: [
           RouteItem(
             path: 'search_condition',
             screen: SearchConditionSettingScreen(),
-            customPageBuilder: (screen) => upperSlideAnimation(screen),
+            customPageBuilder: (_, __, screen) => upperSlideAnimation(screen),
             childRoutes: null,
           ),
           RouteItem(
             path: 'theme',
             screen: ThemeSettingScreen(),
-            customPageBuilder: (screen) => upperSlideAnimation(screen),
+            customPageBuilder: (_, __, screen) => upperSlideAnimation(screen),
             childRoutes: null,
           ),
           RouteItem(
             path: 'delete_all',
             screen: DeleteAllScreen(),
-            customPageBuilder: (screen) => upperSlideAnimation(screen),
+            customPageBuilder: (_, __, screen) => upperSlideAnimation(screen),
             childRoutes: null,
           ),
         ],
       ),
     ];
     errorScreen = ErrorScreen();
-    errorPageBuilder = (screen) => withoutAnimation(screen);
+    errorPageBuilder = (_, __, screen) => withoutAnimation(screen);
   }
 }

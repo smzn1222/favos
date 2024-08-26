@@ -9,17 +9,18 @@ GoRouter routeBuilder() {
   // 根本のルートは初期ページにリダイレクトする
   routes.add(GoRoute(
     path: '/',
-    redirect: (context, state) => routeInfo.initialLocation,
+    redirect: (_, __) => routeInfo.initialLocation,
   ));
 
   return GoRouter(
     initialLocation: routeInfo.initialLocation,
     routes: routes,
     errorPageBuilder: routeInfo.errorPageBuilder != null
-        ? (context, state) => routeInfo.errorPageBuilder!(routeInfo.errorScreen)
+        ? (context, state) =>
+            routeInfo.errorPageBuilder!(context, state, routeInfo.errorScreen)
         : null,
     errorBuilder: routeInfo.errorPageBuilder == null
-        ? (context, state) => routeInfo.errorScreen
+        ? (_, __) => routeInfo.errorScreen
         : null,
   );
 }
@@ -30,11 +31,10 @@ List<GoRoute> convertToGoRouter(List<RouteItem> routes) {
     goRoutes.add(GoRoute(
       path: route.path,
       pageBuilder: route.customPageBuilder != null
-          ? (context, state) => route.customPageBuilder!(route.screen)
+          ? (context, state) =>
+              route.customPageBuilder!(context, state, route.screen)
           : null,
-      builder: route.customPageBuilder == null
-          ? (context, state) => route.screen
-          : null,
+      builder: route.customPageBuilder == null ? (_, __) => route.screen : null,
       routes: route.childRoutes != null
           ? convertToGoRouter(route.childRoutes!)
           : [],

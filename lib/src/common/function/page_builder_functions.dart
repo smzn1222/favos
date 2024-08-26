@@ -1,3 +1,4 @@
+import 'package:favos/src/common/page/custom_pages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -19,18 +20,19 @@ MaterialPage<void> fullScreenDialogAnimation(Widget screen) {
 
 // アニメーションなしの画面遷移
 CustomTransitionPage<void> withoutAnimation(Widget screen) {
-  return CustomTransitionPage<void>(
+  return NoTransitionPage<void>(
     child: screen,
-    transitionsBuilder: (context, animation, secondaryAnimation, child) {
-      return child; // アニメーションなしでただのchildを返す
-    },
   );
 }
 
 // 右からスライドインするようなアニメーションの画面遷移
 CustomTransitionPage<void> rightSideSlideAnimation(Widget screen) {
+  // アニメーションの始点終点
   const begin = Offset(1, 0);
   const end = Offset.zero;
+
+  // アニメーションのカーブ
+  const curve = Curves.easeInOutCubic;
 
   return CustomTransitionPage<void>(
     child: screen,
@@ -41,7 +43,7 @@ CustomTransitionPage<void> rightSideSlideAnimation(Widget screen) {
             begin: begin,
             end: end,
           ).chain(
-            CurveTween(curve: Curves.easeInOutCubic),
+            CurveTween(curve: curve),
           ),
         ),
         child: child,
@@ -54,6 +56,7 @@ CustomTransitionPage<void> rightSideSlideAnimation(Widget screen) {
 CustomTransitionPage<void> upperSlideAnimation(Widget screen) {
   const begin = Offset(0, 1);
   const end = Offset.zero;
+  const curve = Curves.easeInOutCubic;
 
   return CustomTransitionPage<void>(
     child: screen,
@@ -64,7 +67,7 @@ CustomTransitionPage<void> upperSlideAnimation(Widget screen) {
             begin: begin,
             end: end,
           ).chain(
-            CurveTween(curve: Curves.easeInOutCubic),
+            CurveTween(curve: curve),
           ),
         ),
         child: child,
@@ -73,8 +76,8 @@ CustomTransitionPage<void> upperSlideAnimation(Widget screen) {
   );
 }
 
-// iOSライクなアニメーションの画面遷移
-CustomTransitionPage<void> cupertinoPageAnimation(Widget screen) {
+// AndroidなどでもiOSライクな右からのスライドアニメーションをする画面遷移
+CustomTransitionPage<void> cupertinoRightSlideAnimation(Widget screen) {
   return CustomTransitionPage<void>(
     child: screen,
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
@@ -88,13 +91,43 @@ CustomTransitionPage<void> cupertinoPageAnimation(Widget screen) {
   );
 }
 
-// iOSライクなアニメーションの画面遷移（下からスライドイン）
+// ダイアログで表示する画面遷移
+Page<void> dialogAnimation(Widget screen) {
+  return DialogPage<void>(
+    builder: (_) => screen,
+  );
+}
+
+// modal_bottom_sheetパッケージを用いたGoRouter用のmaterial modal bottom sheet
+Page<void> materialModalBottomSheetAnimation(Widget screen) {
+  return MaterialModalBottomSheetPage<void>(
+    builder: (_) => screen,
+  );
+}
+
+Page<void> barModalBottomSheetAnimation(Widget screen) {
+  return BarModalBottomSheetPage<void>(
+    builder: (_) => screen,
+  );
+}
+
+Page<void> cupertinoModalBottomSheetAnimation(Widget screen) {
+  return CupertinoModalBottomSheetPage<void>(
+    builder: (_) => screen,
+  );
+}
+
+// 【試作】iOSライクなアニメーションの画面遷移（下からスライドイン）
+// 現状：アニメーションのカーブがiOSらしくない
 CustomTransitionPage<void> cupertinoUpperPageAnimation(Widget screen) {
   return CustomTransitionPage<void>(
     child: screen,
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      // アニメーションの始点終点
       const begin = Offset(0.0, 1.0);
       const end = Offset.zero;
+
+      // アニメーションのカーブ
       const curve = Curves.easeInOut;
 
       final tween = Tween(begin: begin, end: end);
@@ -116,10 +149,15 @@ CustomTransitionPage<void> cupertinoUpperPageAnimation(Widget screen) {
   );
 }
 
-// iOSライクなモーダル遷移（下からスライドイン）のアニメーションの画面遷移
+// 【試作】iOSライクなモーダル遷移（下からスライドイン）のアニメーションの画面遷移
+// 現状：アニメーションのカーブがiOSらしくない，モーダルの背景部分をタップしても閉じない，モーダルをスワイプで閉じると画面遷移が完了せずフリーズする
 CustomTransitionPage<void> cupertinoModalPageAnimation(Widget screen) {
+  // アニメーションの始点終点
   const begin = Offset(0, 1);
   const end = Offset.zero;
+
+  // アニメーションのカーブ
+  const curve = Curves.easeInOutCubic;
 
   final draggableScrollController = DraggableScrollableController();
 
@@ -135,7 +173,7 @@ CustomTransitionPage<void> cupertinoModalPageAnimation(Widget screen) {
             begin: begin,
             end: end,
           ).chain(
-            CurveTween(curve: Curves.easeInOutCubic),
+            CurveTween(curve: curve),
           ),
         ),
         child: DraggableScrollableSheet(
