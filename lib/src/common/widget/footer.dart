@@ -33,6 +33,7 @@ class Footer extends StatelessWidget {
       },
       selectedItemColor: Theme.of(context).colorScheme.onBackground,
       backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+      enableFeedback: false,
       // currentIndex: 1,
       // // アイコンサイズ
       // iconSize: 35,

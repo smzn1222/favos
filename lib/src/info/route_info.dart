@@ -14,8 +14,8 @@ import 'package:favos/src/screens/shop_list_screen.dart';
 import 'package:favos/src/screens/situations_screen.dart';
 import 'package:favos/src/screens/tags_screen.dart';
 import 'package:favos/src/screens/theme_setting_screen.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 class RouteItem {
   final String path;
@@ -52,45 +52,52 @@ final class RouteInfo {
         customPageBuilder: (_, __, screen) => withoutAnimation(screen),
         childRoutes: [
           RouteItem(
+            path: 'detail',
+            screen: ShopFormScreen(),
+            customPageBuilder: (_, __, screen) =>
+                cupertinoModalBottomSheetAnimation(screen),
+            childRoutes: null,
+          ),
+          RouteItem(
             path: 'add',
             screen: ShopFormScreen(),
             customPageBuilder: (_, __, screen) =>
-                cupertinoRightSlideAnimation(screen),
+                cupertinoUpperSlideAnimation(screen),
             childRoutes: null,
           ),
           RouteItem(
             path: 'areas',
             screen: AreasScreen(),
             customPageBuilder: (_, __, screen) =>
-                fullScreenDialogAnimation(screen),
+                cupertinoUpperSlideAnimation(screen),
             childRoutes: null,
           ),
           RouteItem(
             path: 'categories',
             screen: CategoriesScreen(),
             customPageBuilder: (_, __, screen) =>
-                fullScreenDialogAnimation(screen),
+                cupertinoUpperSlideAnimation(screen),
             childRoutes: null,
           ),
           RouteItem(
             path: 'situations',
             screen: SituationsScreen(),
             customPageBuilder: (_, __, screen) =>
-                materialModalBottomSheetAnimation(screen),
+                cupertinoUpperSlideAnimation(screen),
             childRoutes: null,
           ),
           RouteItem(
             path: 'tags',
             screen: TagsScreen(),
             customPageBuilder: (_, __, screen) =>
-                barModalBottomSheetAnimation(screen),
+                cupertinoUpperSlideAnimation(screen),
             childRoutes: null,
           ),
           RouteItem(
             path: 'deleted_list',
             screen: DeletedListScreen(),
             customPageBuilder: (_, __, screen) =>
-                cupertinoModalBottomSheetAnimation(screen),
+                cupertinoUpperSlideAnimation(screen),
             childRoutes: null,
           ),
         ],
@@ -103,13 +110,15 @@ final class RouteInfo {
           RouteItem(
             path: 'sharing',
             screen: SharingScreen(),
-            customPageBuilder: (_, __, screen) => upperSlideAnimation(screen),
+            customPageBuilder: (_, __, screen) =>
+                cupertinoUpperSlideAnimation(screen),
             childRoutes: null,
           ),
           RouteItem(
             path: 'shared_qr',
             screen: SharedQrScreen(),
-            customPageBuilder: (_, __, screen) => upperSlideAnimation(screen),
+            customPageBuilder: (_, __, screen) =>
+                cupertinoUpperSlideAnimation(screen),
             childRoutes: null,
           ),
         ],
@@ -122,19 +131,22 @@ final class RouteInfo {
           RouteItem(
             path: 'search_condition',
             screen: SearchConditionSettingScreen(),
-            customPageBuilder: (_, __, screen) => upperSlideAnimation(screen),
+            customPageBuilder: (_, __, screen) =>
+                cupertinoUpperSlideAnimation(screen),
             childRoutes: null,
           ),
           RouteItem(
             path: 'theme',
             screen: ThemeSettingScreen(),
-            customPageBuilder: (_, __, screen) => upperSlideAnimation(screen),
+            customPageBuilder: (_, __, screen) =>
+                cupertinoUpperSlideAnimation(screen),
             childRoutes: null,
           ),
           RouteItem(
             path: 'delete_all',
             screen: DeleteAllScreen(),
-            customPageBuilder: (_, __, screen) => upperSlideAnimation(screen),
+            customPageBuilder: (_, __, screen) =>
+                cupertinoUpperSlideAnimation(screen),
             childRoutes: null,
           ),
         ],

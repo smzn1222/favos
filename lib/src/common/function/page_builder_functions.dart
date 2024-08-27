@@ -3,16 +3,36 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+// GoRouterのpageBuilderに渡す関数
+// 直接GoRouterのpageBuilderにPageを渡しても良い
+
 // 通常のアニメーションの画面遷移
 MaterialPage<void> normalAnimation(Widget screen) {
   return MaterialPage<void>(
     child: screen,
+    fullscreenDialog: false,
   );
 }
 
 // 基本はnomalAnimationと同様だが、iOSのみモーダル遷移（下からスライドイン）するようなアニメーションの画面遷移
 MaterialPage<void> fullScreenDialogAnimation(Widget screen) {
   return MaterialPage<void>(
+    child: screen,
+    fullscreenDialog: true,
+  );
+}
+
+// iOSライクな右からのスライドアニメーションをする画面遷移
+CupertinoPage<void> cupertinoRightSlideAnimation(Widget screen) {
+  return CupertinoPage<void>(
+    child: screen,
+    fullscreenDialog: false,
+  );
+}
+
+// iOSライクな下からのスライドアニメーションをする画面遷移
+CupertinoPage<void> cupertinoUpperSlideAnimation(Widget screen) {
+  return CupertinoPage<void>(
     child: screen,
     fullscreenDialog: true,
   );
@@ -76,8 +96,8 @@ CustomTransitionPage<void> upperSlideAnimation(Widget screen) {
   );
 }
 
-// AndroidなどでもiOSライクな右からのスライドアニメーションをする画面遷移
-CustomTransitionPage<void> cupertinoRightSlideAnimation(Widget screen) {
+// 【試作】AndroidなどでもiOSライクな右からのスライドアニメーションをする画面遷移
+CustomTransitionPage<void> cupertinoRightSlideAnimation2(Widget screen) {
   return CustomTransitionPage<void>(
     child: screen,
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
@@ -98,21 +118,25 @@ Page<void> dialogAnimation(Widget screen) {
   );
 }
 
-// modal_bottom_sheetパッケージを用いたGoRouter用のmaterial modal bottom sheet
+// modal_bottom_sheetパッケージのshowMaterialModalBottomSheetの再現
 Page<void> materialModalBottomSheetAnimation(Widget screen) {
   return MaterialModalBottomSheetPage<void>(
     builder: (_) => screen,
   );
 }
 
+// modal_bottom_sheetパッケージのshowBarModalBottomSheetの再現
 Page<void> barModalBottomSheetAnimation(Widget screen) {
   return BarModalBottomSheetPage<void>(
     builder: (_) => screen,
   );
 }
 
+// modal_bottom_sheetパッケージのshowCupertinoModalBottomSheetの再現
 Page<void> cupertinoModalBottomSheetAnimation(Widget screen) {
   return CupertinoModalBottomSheetPage<void>(
+    expand: true,
+    backgroundColor: Colors.transparent,
     builder: (_) => screen,
   );
 }
