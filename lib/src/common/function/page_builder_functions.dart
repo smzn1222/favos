@@ -133,7 +133,8 @@ Page<void> barModalBottomSheetAnimation(Widget screen) {
 }
 
 // modal_bottom_sheetパッケージのshowCupertinoModalBottomSheetの再現
-Page<void> cupertinoModalBottomSheetAnimation(Widget screen) {
+Page<void> cupertinoModalBottomSheetAnimation(
+    BuildContext context, GoRouterState state, Widget screen) {
   return CupertinoModalBottomSheetPage<void>(
     expand: true,
     backgroundColor: Colors.transparent,

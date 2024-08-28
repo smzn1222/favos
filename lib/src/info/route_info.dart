@@ -9,6 +9,7 @@ import 'package:favos/src/screens/settings_screen.dart';
 import 'package:favos/src/screens/share_menu_screen.dart';
 import 'package:favos/src/screens/shared_qr_screen.dart';
 import 'package:favos/src/screens/sharing_screen.dart';
+import 'package:favos/src/screens/shop_detail_screen.dart';
 import 'package:favos/src/screens/shop_form_screen.dart';
 import 'package:favos/src/screens/shop_list_screen.dart';
 import 'package:favos/src/screens/situations_screen.dart';
@@ -53,9 +54,9 @@ final class RouteInfo {
         childRoutes: [
           RouteItem(
             path: 'detail',
-            screen: ShopFormScreen(),
-            customPageBuilder: (_, __, screen) =>
-                cupertinoModalBottomSheetAnimation(screen),
+            screen: ShopDetailScreen(),
+            customPageBuilder: (context, state, screen) =>
+                cupertinoModalBottomSheetAnimation(context, state, screen),
             childRoutes: null,
           ),
           RouteItem(
