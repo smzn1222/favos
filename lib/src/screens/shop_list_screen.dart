@@ -6,6 +6,7 @@ import 'package:favos/src/info/favos_menu_info.dart';
 import 'package:favos/src/info/shop_list_sub_menu_info.dart';
 import 'package:favos/src/parts/search_condition_drawer.dart';
 import 'package:favos/src/parts/shop_card.dart';
+import 'package:favos/src/screens/shop_detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:go_router/go_router.dart';
@@ -14,7 +15,7 @@ class ShopListScreen extends StatelessWidget {
   ShopListScreen({super.key});
   late final FavosMenuInfo favosMenuInfo;
   late final ShopListSubMenuInfo shopListSubMenuInfo;
-  final shopList = List.generate(20,
+  final List<Shop> shopList = List.generate(20,
       (index) => Shop(name: 'Shop$index', url: 'https://example$index.com'));
 
   @override
@@ -48,12 +49,17 @@ class ShopListScreen extends StatelessWidget {
       ),
       endDrawer: SearchConditionDrawer(),
       body: ListView(
-        children: [
-          for (var shop in shopList)
-            ShopCard(
-              shop: shop,
-            ),
-        ],
+        children: shopList.asMap().entries.map((entry) {
+          int index = entry.key;
+          Shop shop = entry.value;
+          ShopListRecord shopListRecord = (index, shopList);
+
+          return ShopCard(
+            shop: shop,
+            onTap: () => GoRouter.of(context)
+                .go('/shop_list/detail', extra: shopListRecord),
+          );
+        }).toList(),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => GoRouter.of(context).go('/shop_list/add'),

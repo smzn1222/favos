@@ -1,18 +1,18 @@
 import 'package:favos/src/Entity/shop.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 class ShopCard extends StatelessWidget {
   final Shop shop;
+  final void Function()? onTap;
 
-  ShopCard({super.key, required this.shop});
+  ShopCard({super.key, required this.shop, this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return Card(
       child: InkWell(
-        onTap: () => GoRouter.of(context).go('/shop_list/detail'),
+        onTap: onTap,
         child: ListTile(
           title: Text(shop.name),
           subtitle: Text(shop.url),

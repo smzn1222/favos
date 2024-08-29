@@ -17,16 +17,17 @@ import 'package:favos/src/screens/tags_screen.dart';
 import 'package:favos/src/screens/theme_setting_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class RouteItem {
   final String path;
-  final Widget screen;
-  final Function? customPageBuilder;
+  final Widget Function(BuildContext, GoRouterState) getScreen;
+  final Page Function(BuildContext, GoRouterState, Widget)? customPageBuilder;
   final List<RouteItem>? childRoutes;
 
   RouteItem({
     required this.path,
-    required this.screen,
+    required this.getScreen,
     this.customPageBuilder,
     this.childRoutes,
   });
@@ -35,8 +36,9 @@ class RouteItem {
 final class RouteInfo {
   late final String initialLocation;
   late final List<RouteItem> routes;
-  late final Widget errorScreen;
-  late final Function? errorPageBuilder;
+  late final Widget Function(BuildContext, GoRouterState) getErrorScreen;
+  late final Page Function(BuildContext, GoRouterState, Widget)?
+      errorPageBuilder;
 
   static final RouteInfo _instance = RouteInfo._internal();
 
@@ -49,111 +51,116 @@ final class RouteInfo {
     routes = [
       RouteItem(
         path: '/shop_list',
-        screen: ShopListScreen(),
-        customPageBuilder: (_, __, screen) => withoutAnimation(screen),
+        getScreen: (context, state) => ShopListScreen(),
+        customPageBuilder: (context, state, screen) =>
+            withoutAnimation(screen: screen),
         childRoutes: [
           RouteItem(
             path: 'detail',
-            screen: ShopDetailScreen(),
+            getScreen: (context, state) =>
+                ShopDetailScreen(shopListRecord: state.extra as ShopListRecord),
             customPageBuilder: (context, state, screen) =>
-                cupertinoModalBottomSheetAnimation(context, state, screen),
+                cupertinoModalBottomSheetAnimation(screen: screen),
             childRoutes: null,
           ),
           RouteItem(
             path: 'add',
-            screen: ShopFormScreen(),
-            customPageBuilder: (_, __, screen) =>
-                cupertinoUpperSlideAnimation(screen),
+            getScreen: (context, state) => ShopFormScreen(),
+            customPageBuilder: (context, state, screen) =>
+                cupertinoUpperSlideAnimation(screen: screen),
             childRoutes: null,
           ),
           RouteItem(
             path: 'areas',
-            screen: AreasScreen(),
-            customPageBuilder: (_, __, screen) =>
-                cupertinoUpperSlideAnimation(screen),
+            getScreen: (context, state) => AreasScreen(),
+            customPageBuilder: (context, state, screen) =>
+                cupertinoUpperSlideAnimation(screen: screen),
             childRoutes: null,
           ),
           RouteItem(
             path: 'categories',
-            screen: CategoriesScreen(),
-            customPageBuilder: (_, __, screen) =>
-                cupertinoUpperSlideAnimation(screen),
+            getScreen: (context, state) => CategoriesScreen(),
+            customPageBuilder: (context, state, screen) =>
+                cupertinoUpperSlideAnimation(screen: screen),
             childRoutes: null,
           ),
           RouteItem(
             path: 'situations',
-            screen: SituationsScreen(),
-            customPageBuilder: (_, __, screen) =>
-                cupertinoUpperSlideAnimation(screen),
+            getScreen: (context, state) => SituationsScreen(),
+            customPageBuilder: (context, state, screen) =>
+                cupertinoUpperSlideAnimation(screen: screen),
             childRoutes: null,
           ),
           RouteItem(
             path: 'tags',
-            screen: TagsScreen(),
-            customPageBuilder: (_, __, screen) =>
-                cupertinoUpperSlideAnimation(screen),
+            getScreen: (context, state) => TagsScreen(),
+            customPageBuilder: (context, state, screen) =>
+                cupertinoUpperSlideAnimation(screen: screen),
             childRoutes: null,
           ),
           RouteItem(
             path: 'deleted_list',
-            screen: DeletedListScreen(),
-            customPageBuilder: (_, __, screen) =>
-                cupertinoUpperSlideAnimation(screen),
+            getScreen: (context, state) => DeletedListScreen(),
+            customPageBuilder: (context, state, screen) =>
+                cupertinoUpperSlideAnimation(screen: screen),
             childRoutes: null,
           ),
         ],
       ),
       RouteItem(
         path: '/share_menu',
-        screen: ShareMenuScreen(),
-        customPageBuilder: (_, __, screen) => withoutAnimation(screen),
+        getScreen: (context, state) => ShareMenuScreen(),
+        customPageBuilder: (context, state, screen) =>
+            withoutAnimation(screen: screen),
         childRoutes: [
           RouteItem(
             path: 'sharing',
-            screen: SharingScreen(),
-            customPageBuilder: (_, __, screen) =>
-                cupertinoUpperSlideAnimation(screen),
+            getScreen: (context, state) => SharingScreen(),
+            customPageBuilder: (context, state, screen) =>
+                cupertinoUpperSlideAnimation(screen: screen),
             childRoutes: null,
           ),
           RouteItem(
             path: 'shared_qr',
-            screen: SharedQrScreen(),
-            customPageBuilder: (_, __, screen) =>
-                cupertinoUpperSlideAnimation(screen),
+            getScreen: (context, state) => SharedQrScreen(),
+            customPageBuilder: (context, state, screen) =>
+                cupertinoUpperSlideAnimation(screen: screen),
             childRoutes: null,
           ),
         ],
       ),
       RouteItem(
         path: '/settings',
-        screen: SettingsScreen(),
-        customPageBuilder: (_, __, screen) => withoutAnimation(screen),
+        getScreen: (context, state) => SettingsScreen(),
+        customPageBuilder: (context, state, screen) =>
+            withoutAnimation(screen: screen),
         childRoutes: [
           RouteItem(
             path: 'search_condition',
-            screen: SearchConditionSettingScreen(),
-            customPageBuilder: (_, __, screen) =>
-                cupertinoUpperSlideAnimation(screen),
+            getScreen: (context, state) => SearchConditionSettingScreen(),
+            customPageBuilder: (context, state, screen) =>
+                cupertinoUpperSlideAnimation(screen: screen),
             childRoutes: null,
           ),
           RouteItem(
             path: 'theme',
-            screen: ThemeSettingScreen(),
-            customPageBuilder: (_, __, screen) =>
-                cupertinoUpperSlideAnimation(screen),
+            getScreen: (context, state) => ThemeSettingScreen(),
+            customPageBuilder: (context, state, screen) =>
+                cupertinoUpperSlideAnimation(screen: screen),
             childRoutes: null,
           ),
           RouteItem(
             path: 'delete_all',
-            screen: DeleteAllScreen(),
-            customPageBuilder: (_, __, screen) =>
-                cupertinoUpperSlideAnimation(screen),
+            getScreen: (context, state) => DeleteAllScreen(),
+            customPageBuilder: (context, state, screen) =>
+                cupertinoUpperSlideAnimation(screen: screen),
             childRoutes: null,
           ),
         ],
       ),
     ];
-    errorScreen = ErrorScreen();
-    errorPageBuilder = (_, __, screen) => withoutAnimation(screen);
+    getErrorScreen = (context, state) => ErrorScreen();
+    errorPageBuilder =
+        (context, state, screen) => withoutAnimation(screen: screen);
   }
 }

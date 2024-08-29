@@ -7,7 +7,7 @@ import 'package:go_router/go_router.dart';
 // 直接GoRouterのpageBuilderにPageを渡しても良い
 
 // 通常のアニメーションの画面遷移
-MaterialPage<void> normalAnimation(Widget screen) {
+MaterialPage<void> normalAnimation({required Widget screen}) {
   return MaterialPage<void>(
     child: screen,
     fullscreenDialog: false,
@@ -15,7 +15,7 @@ MaterialPage<void> normalAnimation(Widget screen) {
 }
 
 // 基本はnomalAnimationと同様だが、iOSのみモーダル遷移（下からスライドイン）するようなアニメーションの画面遷移
-MaterialPage<void> fullScreenDialogAnimation(Widget screen) {
+MaterialPage<void> fullScreenDialogAnimation({required Widget screen}) {
   return MaterialPage<void>(
     child: screen,
     fullscreenDialog: true,
@@ -23,7 +23,7 @@ MaterialPage<void> fullScreenDialogAnimation(Widget screen) {
 }
 
 // iOSライクな右からのスライドアニメーションをする画面遷移
-CupertinoPage<void> cupertinoRightSlideAnimation(Widget screen) {
+CupertinoPage<void> cupertinoRightSlideAnimation({required Widget screen}) {
   return CupertinoPage<void>(
     child: screen,
     fullscreenDialog: false,
@@ -31,7 +31,7 @@ CupertinoPage<void> cupertinoRightSlideAnimation(Widget screen) {
 }
 
 // iOSライクな下からのスライドアニメーションをする画面遷移
-CupertinoPage<void> cupertinoUpperSlideAnimation(Widget screen) {
+CupertinoPage<void> cupertinoUpperSlideAnimation({required Widget screen}) {
   return CupertinoPage<void>(
     child: screen,
     fullscreenDialog: true,
@@ -39,14 +39,14 @@ CupertinoPage<void> cupertinoUpperSlideAnimation(Widget screen) {
 }
 
 // アニメーションなしの画面遷移
-CustomTransitionPage<void> withoutAnimation(Widget screen) {
+CustomTransitionPage<void> withoutAnimation({required Widget screen}) {
   return NoTransitionPage<void>(
     child: screen,
   );
 }
 
 // 右からスライドインするようなアニメーションの画面遷移
-CustomTransitionPage<void> rightSideSlideAnimation(Widget screen) {
+CustomTransitionPage<void> rightSideSlideAnimation({required Widget screen}) {
   // アニメーションの始点終点
   const begin = Offset(1, 0);
   const end = Offset.zero;
@@ -73,7 +73,7 @@ CustomTransitionPage<void> rightSideSlideAnimation(Widget screen) {
 }
 
 // 下からスライドインするようなアニメーションの画面遷移
-CustomTransitionPage<void> upperSlideAnimation(Widget screen) {
+CustomTransitionPage<void> upperSlideAnimation({required Widget screen}) {
   const begin = Offset(0, 1);
   const end = Offset.zero;
   const curve = Curves.easeInOutCubic;
@@ -97,7 +97,8 @@ CustomTransitionPage<void> upperSlideAnimation(Widget screen) {
 }
 
 // 【試作】AndroidなどでもiOSライクな右からのスライドアニメーションをする画面遷移
-CustomTransitionPage<void> cupertinoRightSlideAnimation2(Widget screen) {
+CustomTransitionPage<void> cupertinoRightSlideAnimation2(
+    {required Widget screen}) {
   return CustomTransitionPage<void>(
     child: screen,
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
@@ -112,29 +113,28 @@ CustomTransitionPage<void> cupertinoRightSlideAnimation2(Widget screen) {
 }
 
 // ダイアログで表示する画面遷移
-Page<void> dialogAnimation(Widget screen) {
+Page<void> dialogAnimation({required Widget screen}) {
   return DialogPage<void>(
     builder: (_) => screen,
   );
 }
 
 // modal_bottom_sheetパッケージのshowMaterialModalBottomSheetの再現
-Page<void> materialModalBottomSheetAnimation(Widget screen) {
+Page<void> materialModalBottomSheetAnimation({required Widget screen}) {
   return MaterialModalBottomSheetPage<void>(
     builder: (_) => screen,
   );
 }
 
 // modal_bottom_sheetパッケージのshowBarModalBottomSheetの再現
-Page<void> barModalBottomSheetAnimation(Widget screen) {
+Page<void> barModalBottomSheetAnimation({required Widget screen}) {
   return BarModalBottomSheetPage<void>(
     builder: (_) => screen,
   );
 }
 
 // modal_bottom_sheetパッケージのshowCupertinoModalBottomSheetの再現
-Page<void> cupertinoModalBottomSheetAnimation(
-    BuildContext context, GoRouterState state, Widget screen) {
+Page<void> cupertinoModalBottomSheetAnimation({required Widget screen}) {
   return CupertinoModalBottomSheetPage<void>(
     expand: true,
     backgroundColor: Colors.transparent,
@@ -144,7 +144,8 @@ Page<void> cupertinoModalBottomSheetAnimation(
 
 // 【試作】iOSライクなアニメーションの画面遷移（下からスライドイン）
 // 現状：アニメーションのカーブがiOSらしくない
-CustomTransitionPage<void> cupertinoUpperPageAnimation(Widget screen) {
+CustomTransitionPage<void> cupertinoUpperPageAnimation(
+    {required Widget screen}) {
   return CustomTransitionPage<void>(
     child: screen,
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
@@ -176,7 +177,8 @@ CustomTransitionPage<void> cupertinoUpperPageAnimation(Widget screen) {
 
 // 【試作】iOSライクなモーダル遷移（下からスライドイン）のアニメーションの画面遷移
 // 現状：アニメーションのカーブがiOSらしくない，モーダルの背景部分をタップしても閉じない，モーダルをスワイプで閉じると画面遷移が完了せずフリーズする
-CustomTransitionPage<void> cupertinoModalPageAnimation(Widget screen) {
+CustomTransitionPage<void> cupertinoModalPageAnimation(
+    {required Widget screen}) {
   // アニメーションの始点終点
   const begin = Offset(0, 1);
   const end = Offset.zero;
